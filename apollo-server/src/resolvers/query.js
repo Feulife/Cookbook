@@ -1,4 +1,4 @@
-module.exports = {
+export const query = {
   recipes: async (parent, args, { models }) => {
     return await models.Recipe.find().limit(100);
   },

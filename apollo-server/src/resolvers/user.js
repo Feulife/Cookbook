@@ -1,13 +1,11 @@
-import Query from './query.js';
-import Mutation from './mutation.js';
-import Recipe from './recipe.js';
-import User from './user.js';
-import { GraphQLDataTime } from 'graphql-iso-date';
+export const user = {
+  // list of recipes when requested
+  recipe: async (user, args, { models }) => {
+    return await Recipe.find({ author: user._id }).sort({ _id: -1 });
+  },
 
-module.exports = {
-  Query,
-  Mutation,
-  Recipe,
-  User,
-  DateTime: GraphQLDataTime
+  // list of favorites when requested
+  favorites: async (user, args, { models }) => {
+    return await Recipe.find({ author: user._id }).sort({ _id: -1 });
+  },
 };
