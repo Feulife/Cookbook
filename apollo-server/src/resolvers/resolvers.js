@@ -4,7 +4,7 @@ import recipe from './recipe.js';
 import User from './user.js';
 import { GraphQLDataTime } from 'graphql-iso-date';
 
-module.exports = {
+export const resolvers = {
   Query,
   Mutation,
   recipe,
