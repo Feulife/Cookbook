@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const NEW_NOTE = gql`
+export const NEW_RECIPE = gql`
   mutation newNote($content: String!) {
-    newNote(content: $content) {
+    newRecipe(content: $content) {
       id
       content
       createdAt
@@ -19,9 +19,9 @@ export const NEW_NOTE = gql`
   }
 `;
 
-export const EDIT_NOTE = gql`
-  mutation updateNote($id: ID!, $content: String!) {
-    updateNote(id: $id, content: $content) {
+export const EDIT_RICEPE = gql`
+  mutation updateRecipe($id: ID!, $content: String!) {
+    updateRecipe(id: $id, content: $content) {
       id
       content
       createdAt
@@ -38,9 +38,9 @@ export const EDIT_NOTE = gql`
   }
 `;
 
-export const DELETE_NOTE = gql`
-  mutation deleteNote($id: ID!) {
-    deleteNote(id: $id)
+export const DELETE_RECIPE = gql`
+  mutation deleteRecipe($id: ID!) {
+    deleteRecipe(id: $id)
   }
 `;
 

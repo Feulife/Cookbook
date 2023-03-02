@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client';
 
-export const GET_NOTES = gql`
-  query noteFeed($cursor: String) {
+export const GET_RECIPES = gql`
+  query recipeFeed($cursor: String) {
     noteFeed(cursor: $cursor) {
       cursor
       hasNextPage
-      notes {
+      recipes {
         id
         createdAt
         content
@@ -20,9 +20,9 @@ export const GET_NOTES = gql`
   }
 `;
 
-export const GET_NOTE = gql`
-  query note($id: ID!) {
-    note(id: $id) {
+export const GET_RECIPE = gql`
+  query recipe($id: ID!) {
+    recipe(id: $id) {
       id
       createdAt
       content
@@ -36,12 +36,12 @@ export const GET_NOTE = gql`
   }
 `;
 
-export const GET_MY_NOTES = gql`
+export const GET_MY_RECIPES = gql`
   query me {
     me {
       id
       username
-      notes {
+      recipes {
         id
         createdAt
         content
