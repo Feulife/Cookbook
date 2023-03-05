@@ -3,8 +3,8 @@ import { useMutation, useQuery } from '@apollo/client';
 
 // import the RecipeForm component
 import RecipeForm from '../components/RecipeForm';
-import { GET_RECIPE, GET_ME } from '../gql/query';
-import { EDIT_RECIPE } from '../gql/mutation';
+import { GET_RECIPE, GET_ME } from '../gql/query.js';
+import { EDIT_RECIPE } from '../gql/mutation.js';
 
 const EditRecipe = props => {
   // store the id found in the url as a variable

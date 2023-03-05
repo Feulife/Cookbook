@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 
 import ButtonAsLink from './ButtonAsLink';
-import { TOGGLE_FAVORITE } from '../gql/mutation';
-import { GET_MY_FAVORITES } from '../gql/query';
+import { TOGGLE_FAVORITE } from '../gql/mutation.js';
+import { GET_MY_FAVORITES } from '../gql/query.js';
 
 const FavoriteNote = props => {
   // store the recipe's favorite count as state

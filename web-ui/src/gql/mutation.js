@@ -19,7 +19,7 @@ export const NEW_RECIPE = gql`
   }
 `;
 
-export const EDIT_RICEPE = gql`
+export const EDIT_RECIPE = gql`
   mutation updateRecipe($id: ID!, $content: String!) {
     updateRecipe(id: $id, content: $content) {
       id
@@ -44,7 +44,7 @@ export const DELETE_RECIPE = gql`
   }
 `;
 
-const TOGGLE_FAVORITE = gql`
+export const TOGGLE_FAVORITE = gql`
   mutation toggleFavorite($id: ID!) {
     toggleFavorite(id: $id) {
       id

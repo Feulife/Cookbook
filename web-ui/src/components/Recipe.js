@@ -4,8 +4,8 @@ import { format } from 'date-fns';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/client';
 
-import RecipeUser from './RecipeUser';
-import { IS_LOGGED_IN } from '../gql/query';
+import RecipeUser from './RecipeUser.js';
+import { IS_LOGGED_IN } from '../gql/query.js';
 
 // Keep recipes from extending wider than 800px
 const StyledRecipe = styled.article`
@@ -31,7 +31,7 @@ const UserActions = styled.div`
   margin-left: auto;
 `;
 
-const Note = ({ note }) => {
+const Recipe = ({ recipe }) => {
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
   // if the data is loading, display a loading message
   if (loading) return <p>Loading...</p>;

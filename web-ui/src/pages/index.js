@@ -2,9 +2,7 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import {
   BrowserRouter,
-  Route,
-  Redirect,
-  BrowserRouter,
+  Route,    
 } from "react-router-dom";
 
 import Layout from "../components/Layout.js";
@@ -52,12 +50,12 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         data.isLoggedIn === true ? (
           <Component {...props} />
         ) : (
-          <Redirect
-            to={{
+          
+            {
               pathname: "/signin",
               state: { from: props.location },
-            }}
-          />
+            }
+          
         )
       }
     />

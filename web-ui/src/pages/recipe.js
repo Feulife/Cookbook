@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 import Recipe from '../components/Recipe.js';
-import { GET_RECIPE } from "../gql/graphql";
+import { GET_RECIPE } from "../gql/query.js";
 
 const RecipePage = props => {
   // store the id found in the url as a variable

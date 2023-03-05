@@ -2,9 +2,9 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
-import DeleteRecipe from './DeleteRecipee';
-import FavoriteRecipe from './FavoriteRecipe';
-import { GET_ME } from '../gql/query';
+import DeleteRecipe from './DeleteRecipe.js';
+import FavoriteRecipe from './FavoriteRecipe.js';
+import { GET_ME } from '../gql/query.js';
 
 const RecipeUser = props => {
   const { loading, error, data } = useQuery(GET_ME);

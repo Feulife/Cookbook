@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../img/logo.svg';
 import { useQuery } from '@apollo/client';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ButtonAsLink from './ButtonAsLink';
 import { IS_LOGGED_IN } from '../gql/query';
@@ -65,4 +65,4 @@ const Header = props => {
   );
 };
 
-export default withRouter(Header);
+export default Header;
