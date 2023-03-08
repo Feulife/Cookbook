@@ -2,9 +2,14 @@
   "dependencies": {
     "@apollo/client": "^3.7.3",
     "@apollo/server": "^4.3.0",
+    "@types/graphql-iso-date": "^3.4.0",
     "bcryptjs": "^2.4.3",
+    "bcryptjs-react": "^2.4.6",
     "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
+    "graphql-date-scalars": "^0.2.0",
+    "graphql-depth-limit": "^1.1.0",
+    "graphql-validation-complexity": "^0.4.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.1"
   },

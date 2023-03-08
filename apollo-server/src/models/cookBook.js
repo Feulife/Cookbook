@@ -1,8 +1,8 @@
-import Note from './note.js';
+import Recipe from './recipe.js';
 import User from './user.js';
 
 export const models = {
-  Note,
+  Recipe,
   User
 };
 

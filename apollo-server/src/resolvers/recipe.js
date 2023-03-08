@@ -1,4 +1,4 @@
-export const recipe = {
+const recipe = {
   // author info when requested
   author: async (recipe, args, { models }) => {
     return await models.User.findById(recipe.aithor)
@@ -8,3 +8,5 @@ export const recipe = {
     return await models.User.find({ _id: { $in: recipe.favoritedBy }})
   }
 };
+
+export default recipe;

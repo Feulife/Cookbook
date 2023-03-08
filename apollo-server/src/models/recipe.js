@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-// Define the note's database schema
-const noteSchema = new mongoose.Schema(
+// Define the recipe's database schema
+const recipeSchema = new mongoose.Schema(
   {
     content: {
       type: String,
@@ -22,12 +22,12 @@ const noteSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
       }
-    ]
+    ],
   },
   // Assimgs createdAt and updatedAt fields with a Date type
   {
     timestamps: true
-  }
+  },
 );
 
-export const Note = mongoose.model('Note', noteSchema);
+export const Recipe = mongoose.model('Recipe', recipeSchema);

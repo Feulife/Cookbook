@@ -8,15 +8,15 @@ import { createComplexityLimitRule } from 'graphql-validation-complexity';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 dotenv.config();
-const Db = process.env.ATLAS_URI;
+// const Db = process.env.ATLAS_URI;
 
-const db = mongoose.connect(Db);
+const db = await mongoose.connect('mongodb+srv://Feulife:Jardin7FeuLife@cluster0.1vxismk.mongodb.net/exemplify_MERN?retryWrites=true&w=majority');
 
 console.info('📚 Connected to db', db?.connections?._connectionString);
 
 // get the user info from a JWT
-const getUser = taken => {
-  if (taken) {
+const getUser = token => {
+  if (token) {
     try {
       // return the user information from the token
       return jwt.verify(token, process.env.JWT_SECRET);

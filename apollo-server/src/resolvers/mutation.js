@@ -1,15 +1,19 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs-react";
 import jwt from 'jsonwebtoken';
-import { AuthenticationError, ForbiddenError } from '@apollo/server';
+// import { AuthenticationError, ForbiddenError } from '@apollo/server';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
 dotenv.config();
 
+// const bcrypt = pkg;
 // import gravatar from '../util/gravatar';
 
 const mutation = {
+  
   newRecipe: async (parent, args, { models, user }) => {
     if (!user) {
-      throw new AuthenticationError('You must be signed in to create a note');
+      throw new Error('You must be signed in to create a note');
     }
 
     return await Recipe.create({
@@ -22,14 +26,14 @@ const mutation = {
   deleteRecipe: async (parent, { id }, { models, user }) => {
     // If not a user, throw an Authentication Error
     if (!user) {
-      throw new AuthenticationError('Yuomust be signed in to delete a note');
+      throw new Error('Yuomust be signed in to delete a note');
     }
   
     // find ther recipe
     const recipe = await Recipe.findById(id);
     // if the recipe owner and current user don't match, throw a forbidden error
     if (recipe && String(recipe.author) !== user.id) {
-      throw new ForbiddenError("You don't have permissions to delete the recipe");
+      throw new Error("You don't have permissions to delete the recipe");
     }
   
     try {
@@ -44,14 +48,14 @@ const mutation = {
   updateRecipe: async (parent, { content, id }, { models, user }) => {
     // If not a user, throw an Athentication Error
     if (!user) {
-      throw new AuthenticationError('You must be signed in to update a recipe');
+      throw new Error('You must be signed in to update a recipe');
     }
 
     // find the recipe
     const recipe = await Recipe.findById(id);
     // If the recipe owner and current user don't match, throw a forbidden error
     if (recipe && String(recipe.author) !== user.id) {
-      throw new ForbiddenError("You don't have permissions to update the recipe");
+      throw new Error("You don't have permissions to update the recipe");
     }
 
     // Update the recipe in the db and return the updated recipe
@@ -72,7 +76,7 @@ const mutation = {
   toggleFavorite: async (parent, { id }, { module, user }) => {
     // If no user context is passed, throw new error
     if (!user) {
-      throw new AuthenticationError();
+      throw new Error();
     }
     // check to see if the user has alredy favorited the recipe
     let recipeCheck = await Recipe.findById(id);
@@ -118,7 +122,7 @@ const mutation = {
     // normalize email addres
     email = email.trim().toLowerCase();
     // hash the password
-    const hashed = await bycrypt.hash(password, 10);
+    const hashed = await bcrypt.hash(password, 10);
 
     // create the gravatar url
     // const avatar = gravatar(email);
@@ -149,12 +153,15 @@ const mutation = {
     });
 
     // if no user is found, throw an authentication error
-    const valid = await bycrypt.compare(password, user.password);
+    const valid = await bcrypt.compare(password, user.password);
     if (!valid) {
-      throw new AuthenticationError('Error singin in');
+      throw new Error('Error singin in');
     }
 
     // create and return the json web token
     return jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   }
+  
 };
+
+export default mutation;

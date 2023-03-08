@@ -1,6 +1,6 @@
-export const user = {
+const user = {
   // list of recipes when requested
-  recipe: async (user, args, { models }) => {
+  recipes: async (user, args, { models }) => {
     return await Recipe.find({ author: user._id }).sort({ _id: -1 });
   },
 
@@ -9,3 +9,5 @@ export const user = {
     return await Recipe.find({ author: user._id }).sort({ _id: -1 });
   },
 };
+
+export default user;

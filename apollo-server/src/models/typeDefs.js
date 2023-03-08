@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 export const typeDefs = gql`
     scalar DateTime
 
-    type Note {
+    type Recipe {
       id: ID!
       content: String!
       author: User!
@@ -18,31 +18,32 @@ export const typeDefs = gql`
       username: String!
       email: String!
       avatar: String
-      notes: [Note!]!
-      favorites: [Note!]!
+      recipes: [Recipe!]!
+      favorites: [Recipe!]!
     }
 
-    type NoteFeed {
-      notes: [Note]!
+    type RecipeFeed {
+      recipes: [Recipe]!
       cursor: String!
       hasNextPage: Boolean!
     }
 
     type Query {
-      notes: [Note!]!
-      note(id: ID): Note!
+      recipes: [Recipe!]!
+      recipe(id: ID): Recipe!
       user(username: String!): User
       users: [User!]!
       me: User!
-      noteFeed(cursor: String): NoteFeed
+      recipeFeed(cursor: String): RecipeFeed
     }
 
     type Mutation {
-      newNote(content: String): Note
-      updateNote(id: ID!, content: String!): Note!
-      deleteNote(id: ID!): Note!
+      newRecipe(content: String): Recipe
+      updateRecipe(id: ID!, content: String!): Recipe!
+      deleteRecipe(id: ID!): Recipe!
+      toggleFavorite(id:ID!): Recipe!
       singUp(username: String!, email: String!, password: String!): String!
-      singIN(username: String, email: String, password: String!): String!
+      singIn(username: String, email: String, password: String!): String!
     }
 
     # type Query {
