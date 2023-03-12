@@ -4,7 +4,7 @@ import GlobalStyle from './components/GlobalStyle';
 import Pages from './pages';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000',
+  uri: 'http://localhost:3000',
   cache: new InMemoryCache(),
 })
 

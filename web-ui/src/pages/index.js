@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import {
   BrowserRouter,
-  Route,    
+  Route    
 } from "react-router-dom";
 
 import Layout from "../components/Layout.js";
@@ -26,6 +26,7 @@ const Pages = () => {
   return (
     <BrowserRouter>
       <Layout>
+        {/* <Routes> */}
         <Route exact path="/" component={Home} />
         <PrivateRoute path="/myrecipes" component={MyRecipes} />
         <PrivateRoute path="/favorites" component={Favorites} />
@@ -34,6 +35,7 @@ const Pages = () => {
         <Route path="/singin" component={SingIn} />
         <PrivateRoute path="/new" component={NewRecipe} />
         <PrivateRoute path="/edit/:id" component={EditRecipe} />
+        {/* </Routes> */}
       </Layout>
     </BrowserRouter>
   );

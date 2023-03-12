@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
 
 import ButtonAsLink from './ButtonAsLink';
-import { IS_LOGGED_IN } from '../gql/query';
+import { IS_LOGGED_IN } from '../gql/query.js';
 
 const HeaderBar = styled.header`
   width: 100%;
