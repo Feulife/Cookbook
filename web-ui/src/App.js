@@ -1,10 +1,10 @@
 import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 
 import GlobalStyle from './components/GlobalStyle';
-import Pages from './pages';
+import Pages from './pages/index.js';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000',
+  uri: 'http://localhost:5000',
   cache: new InMemoryCache(),
 })
 

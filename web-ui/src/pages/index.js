@@ -2,7 +2,8 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import {
   BrowserRouter,
-  Route    
+  Route,
+  Routes  
 } from "react-router-dom";
 
 import Layout from "../components/Layout.js";
@@ -21,25 +22,6 @@ const IS_LOGGED_IN = gql`
     isLoggedIn @client
   }
 `;
-
-const Pages = () => {
-  return (
-    <BrowserRouter>
-      <Layout>
-        {/* <Routes> */}
-        <Route exact path="/" component={Home} />
-        <PrivateRoute path="/myrecipes" component={MyRecipes} />
-        <PrivateRoute path="/favorites" component={Favorites} />
-        <Route path="/recipe/:id" component={Recipe} />
-        <Route path="/singup" component={SingUp} />
-        <Route path="/singin" component={SingIn} />
-        <PrivateRoute path="/new" component={NewRecipe} />
-        <PrivateRoute path="/edit/:id" component={EditRecipe} />
-        {/* </Routes> */}
-      </Layout>
-    </BrowserRouter>
-  );
-};
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
@@ -63,5 +45,25 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     />
   );
 };
+
+const Pages = () => {
+  return (
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+        <Route exact path="/" component={Home} />
+        {/* <PrivateRoute path="/myrecipes" component={MyRecipes} />
+        <PrivateRoute path="/favorites" component={Favorites} /> */}
+        <Route path="/recipe/:id" component={Recipe} />
+        <Route path="/singup" component={SingUp} />
+        <Route path="/singin" component={SingIn} />
+        {/* <PrivateRoute path="/new" component={NewRecipe} />
+        <PrivateRoute path="/edit/:id" component={EditRecipe} /> */}
+        </Routes>
+      </Layout>
+    </BrowserRouter>
+  );
+};
+
 
 export default Pages;
