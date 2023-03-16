@@ -13,7 +13,7 @@ const mutation = {
   
   newRecipe: async (parent, args, { models, user }) => {
     if (!user) {
-      throw new Error('You must be signed in to create a note');
+      throw new Error('You must be signed in to create a recipe');
     }
 
     return await Recipe.create({
@@ -26,7 +26,7 @@ const mutation = {
   deleteRecipe: async (parent, { id }, { models, user }) => {
     // If not a user, throw an Authentication Error
     if (!user) {
-      throw new Error('Yuomust be signed in to delete a note');
+      throw new Error('Yuomust be signed in to delete a recipe');
     }
   
     // find ther recipe
@@ -37,7 +37,7 @@ const mutation = {
     }
   
     try {
-      // if evrything cheks out, remove the note
+      // if evrything cheks out, remove the recipe
       await recipe.remove();
       return true;  
     } catch (err) {

@@ -1,27 +1,26 @@
 import { ApolloServer } from "@apollo/server";
-// import {startStandaloneServer} from '@apollo/server/standalone';
+import {startStandaloneServer} from '@apollo/server/standalone';
 import express from "express";
 import cors from "cors";
 import { typeDefs } from "./models/typeDefs.js";
 import { resolvers } from "./resolvers/resolvers.js";
+import { models } from "./models/cookBook.js";
 import jwt from "jsonwebtoken";
 import depthLimit from "graphql-depth-limit";
 import { createComplexityLimitRule } from "graphql-validation-complexity";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import dbo from "./db/conn.js";
-// const Db = process.env.ATLAS_URI;
+// import Dbo from "./db/conn.js";
+const Db = process.env.ATLAS_URI;
+const Dbs = process.env.Db_SECRET
 dotenv.config();
-// const Db = process.env.ATLAS_URI;
-// const db = await mongoose.connect('mongodb+srv://Feulife:Jardin7FeuLife@cluster0.1vxismk.mongodb.net/exemplify_MERN?retryWrites=true&w=majority');
-// console.info('📚 Connected to db', db?.connections?._connectionString);
 
 // get the user info from a JWT
 
 const port = process.env.PORT || 3000;
-const app = express();
+// const app = express();
 // db.connect(dbo);
-app.use(cors());
+// app.use(cors());
 
 const getUser = (token) => {
   if (token) {
@@ -40,31 +39,54 @@ const server = new ApolloServer({
   resolvers,
   validationRules: [depthLimit(5), createComplexityLimitRule(1000)],
   context: async ({ req }) => {
-    // get the user token from the headers
     const token = req.headers.authorization;
-    // try to retrieve a user with the token
     const user = getUser(token);
-    // add the db models and the user to the context
     return { models, user };
   },
 });
 
 // server.applyMiddleware({ app, path: "/api" });
+// server.listen({ port:3000})
+//       .then(({ url }) => {
+//         console.log(`🚀 Server ready at ${url}`);
+//       });
 
-// mongoose.connect();
+// mongoose.connect(Db, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+// .then(() => {
+//   console.log('📚 Connected to MongoDB')
+//   server.listen( port, () => {
 
-app.listen({ port }, () => {
-  dbo.connectToServer(function (err) {
-    if (err) {
-      console.error(err);
-    }
-  }),
-    console.info(`🚀 Server ready at ${port}`);
-});
-// const { url } = await startStandaloneServer(server, {
-//     listen: {
-//         port: 4000,
-//     },
+//   })
+// })
+// .then((res) => {
+//   console.log(`Server running at ${res.url}`);
 // });
 
-// console.info(`🚀 Server ready at ${url}`);
+// const db = await mongoose.connect(Dbo, {
+// })
+// .then(() => {
+//   listen({ port }, () => {
+//     server.connectToServer(function (err) {
+//       if (err) {
+//         console.error(err);
+//       }
+//     }),
+//       console.info(`🚀 Server ready at ${port}`);
+//   });
+// });
+
+// const db = await mongoose.connect(`mongodb+srv://Feulife:Jardin7FeuLife@cluster0.1vxismk.mongodb.net/cookbook?w=majority`);
+
+
+const db = await mongoose.connect(`${Db}`);
+console.info('Connected to db', db?.connections?._connectionString);
+
+const { url } = await startStandaloneServer(server, {
+    listen: {
+        port: 5000,
+    },
+});
+console.info(`🚀 Server ready at ${url}`);

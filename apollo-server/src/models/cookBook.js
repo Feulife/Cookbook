@@ -3,7 +3,7 @@ import User from './user.js';
 
 export const models = {
   Recipe,
-  User
+  User,
 };
 
 // import mongoose from 'mongoose';
