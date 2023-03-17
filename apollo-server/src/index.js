@@ -17,7 +17,7 @@ dotenv.config();
 
 // get the user info from a JWT
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 // const app = express();
 // db.connect(dbo);
 // app.use(cors());
@@ -82,7 +82,7 @@ const server = new ApolloServer({
 
 
 const db = await mongoose.connect(`${Db}`);
-console.info('Connected to db', db?.connections?._connectionString);
+console.info('📚 Connected to db', db?.connections?._connectionString);
 
 const { url } = await startStandaloneServer(server, {
     listen: {

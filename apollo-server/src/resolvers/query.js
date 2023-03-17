@@ -21,22 +21,22 @@ const query = {
       // set the default hasNextPage value to false
       let hasNextPage = false;
       // if no cursor is passed the default query will be empty
-      // this will pull the newest notes from the db
+      // this will pull the newest recipes from the db
       let cursorQuery = {};
 
       // if there is a cursor
-      // our query will look for notes with an ObjectId less than that of the cursor
+      // our query will look for recipes with an ObjectId less than that of the cursor
       if (cursor) {
         cursorQuery = { _id: { $lt: cursor } };
       }
 
-      // find the limit + 1 of notes in our db, sorted newest to oldest
-      let notes = await models.Recipe.find(cursorQuery)
+      // find the limit + 1 of recipes in our db, sorted newest to oldest
+      let recipes = await models.Recipe.find(cursorQuery)
         .sort({ _id: -1 })
         .limit(limit + 1);
 
-      // if the number of notes we find exceeds our limit
-      // set hasNextPage to true & trim the notes to the limit
+      // if the number of recipes we find exceeds our limit
+      // set hasNextPage to true & trim the recipes to the limit
       if (recipes.length > limit) {
         hasNextPage = true;
         recipes = recipes.slice(0, -1);
